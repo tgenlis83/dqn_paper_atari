@@ -1,2 +1,2 @@
-# dqn_paper_atari
-Reimplementation of the paper "Human-level control through deep reinforcement learning".
+# DQN Atari Paper Implementation
+Reimplementation of the paper "Human-level control through deep reinforcement learning" which introduced the DQN algorithm. The implementation is tested on the Atari 2600 games.

@@ -27,10 +27,11 @@ To ensure that improvements are meaningful and not due to environmental dynamics
 
 We enhanced the original DQN implementation by integrating several components from the Rainbow algorithm:
 
-1. **Dueling Network Architecture**: Separates the estimation of state value and advantage for each action.
-2. **Prioritized Experience Replay**: Samples important transitions more frequently based on temporal-difference (TD) error.
-3. **N-Step Returns**: Uses multi-step returns for better learning from delayed rewards.
-4. **Noisy Networks**: Adds stochasticity to network weights to improve exploration.
+1. **Double DQN**: Addresses overestimation bias by decoupling action selection and evaluation.
+2. **Dueling Network Architecture**: Separates the estimation of state value and advantage for each action.
+3. **Prioritized Experience Replay**: Samples important transitions more frequently based on temporal-difference (TD) error.
+4. **N-Step Returns**: Uses multi-step returns for better learning from delayed rewards.
+5. **Noisy Networks**: Adds stochasticity to network weights to improve exploration.
 
 ## Results
 

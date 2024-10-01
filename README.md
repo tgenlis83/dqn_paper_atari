@@ -4,15 +4,11 @@
 
 ## Introduction
 
-This project presents the re-implementation and enhancement of the Deep Q-Network (DQN) originally introduced by Mnih et al. in 2015. Motivated by a desire to deepen our understanding of reinforcement learning (RL) and deep learning, and driven by curiosity about reimplementing influential papers, we replicated the DQN with modifications to accommodate computational constraints.
-
-We then upgraded the model by integrating components from the Rainbow algorithm, including dueling networks, prioritized experience replay, n-step returns, and noisy networks. Comprehensive evaluations were conducted by comparing each version against a random action baseline and analyzing the impact of different parameters and network configurations.
-
-The results demonstrate significant performance improvements with each enhancement, highlighting the effectiveness of the integrated components. This work provides insights into the practical implementation of advanced RL techniques and underscores the educational value of reimplementing foundational research.
+This project re-implements and enhances the Deep Q-Network (DQN) by Mnih et al. (2015). We replicated the DQN with modifications for computational constraints and integrated components from the Rainbow algorithm, such as dueling networks, prioritized experience replay, n-step returns, and noisy networks. Evaluations against a random action baseline showed significant performance improvements, demonstrating the effectiveness of these enhancements.
 
 ## Motivation
 
-Our primary motivation for this project was to deepen our understanding of reinforcement learning and deep learning by engaging directly with seminal research in the field. By reimplementing the original DQN, we aimed to explore its foundational mechanics firsthand. Enhancing the DQN with components from the Rainbow algorithm allowed us to evaluate the effects of these upgrades on performance and further our educational growth in advanced RL techniques.
+Our goal was to deepen our understanding of reinforcement learning and deep learning by reimplementing the DQN and integrating Rainbow components. This allowed us to explore foundational mechanics and evaluate the impact of advanced RL techniques.
 
 ### Environment
 

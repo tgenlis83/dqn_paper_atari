@@ -32,33 +32,7 @@ Our efforts included re-implementing the DQN with modifications to suit computat
 
 **Network Architecture:**
 
-```mermaid
-graph TD
-  A[Input Layer] --> B[Conv Layer 1]
-  B --> C[Conv Layer 2]
-  C --> D[Conv Layer 3]
-  D --> E[Flattening Layer]
-  E --> F[Fully Connected Layer]
-  F --> G[Output Layer]
-  
-  subgraph Layer Descriptions
-    A1[Stack of four normalized grayscale images (84×84 pixels)]
-    B1[32 filters of size 8×8, stride 4; ReLU activation]
-    C1[64 filters of size 4×4, stride 2; ReLU activation]
-    D1[64 filters of size 3×3, stride 1; ReLU activation]
-    E1[Converts output to one-dimensional vector]
-    F1[512 units; ReLU activation]
-    G1[Q-values for each possible action]
-  end
-  
-  A --> A1
-  B --> B1
-  C --> C1
-  D --> D1
-  E --> E1
-  F --> F1
-  G --> G1
-```
+![dqn_architecture](imgs/dqn.png)
 
 **Hyperparameters:**
 
@@ -88,7 +62,7 @@ The agent was trained for 500,000 steps, with the target network updated every 1
 
 **Testing Protocols:**
 
-We conducted 50 episodes to evaluate the agent's performance after training, calculating the average reward per episode to assess effectiveness.
+We conducted 50 episodes to evaluate the agent's performance after training, calculating the average reward per episode to assess effectiveness. We also introduce a 5% chance, as advised by the paper, of random actions during testing, to avoid overfitting to the training environment and that the game will not stay stuck if the agent repeatedly chooses the same action for a while.
 
 **Baseline: Random Actions**
 
@@ -122,18 +96,7 @@ The Rainbow algorithm combines several enhancements to improve DQN performance, 
 
 We incorporated the **Dueling Network Architecture** by modifying the network to include separate streams for state value and advantage, which are then combined to produce Q-values.
 
-```mermaid
-graph TD
-    A[Input Layer] --> B[Conv Layer 1]
-    B --> C[Conv Layer 2]
-    C --> D[Conv Layer 3]
-    D --> E[Flattening Layer]
-    E --> F[Value Stream FC Layer]
-    E --> G[Advantage Stream FC Layer]
-    F --> H[State Value]
-    G --> I[Advantage Values]
-    H & I --> J[Combine to Q-Values]
-```
+![rdqn_architecture](imgs/rdqn.png)
 
 We implemented **Prioritized Experience Replay** by modifying the replay buffer to prioritize experiences with higher TD errors. **N-Step Returns** were incorporated by adjusting target calculations to include rewards over multiple steps. We added **Noisy Networks** by replacing certain layers with noisy layers to facilitate exploration.
 

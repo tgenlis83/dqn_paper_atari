@@ -1,8 +1,10 @@
 # Deep Q-Network (DQN) Implementation and Upgrades
 
-*Make sure to read the report from the repository for more details [report.pdf](report.pdf).*
+![fun_gif](imgs/fun_gif.gif)
 
 ## Introduction
+
+*Make sure to read the report from the repository for more details about the project [report.pdf](report.pdf).*
 
 This project re-implements and enhances the Deep Q-Network (DQN) by Mnih et al. (2015). We replicated the DQN with modifications for computational constraints and integrated components from the Rainbow algorithm, such as dueling networks, prioritized experience replay, n-step returns, and noisy networks. Evaluations against a random action baseline showed significant performance improvements, demonstrating the effectiveness of these enhancements.
 
@@ -20,6 +22,8 @@ Our goal was to deepen our understanding of reinforcement learning and deep lear
 To ensure that improvements are meaningful and not due to environmental dynamics, we compared the agent's performance to a random action baseline.
 
 ## Upgrades Using Rainbow Components
+
+![rdqn_architecture](imgs/rdqn.png)
 
 We enhanced the original DQN implementation by integrating several components from the Rainbow algorithm:
 

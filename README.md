@@ -1,5 +1,7 @@
 # Deep Q-Network (DQN) Implementation and Upgrades
 
+*Make sure to read the report from the repository for more details [report.pdf](report.pdf).*
+
 ## Introduction
 
 This project presents the re-implementation and enhancement of the Deep Q-Network (DQN) originally introduced by Mnih et al. in 2015. Motivated by a desire to deepen our understanding of reinforcement learning (RL) and deep learning, and driven by curiosity about reimplementing influential papers, we replicated the DQN with modifications to accommodate computational constraints.
@@ -35,8 +37,6 @@ We enhanced the original DQN implementation by integrating several components fr
 ### Performance Metrics
 
 The enhanced DQN showed improved performance over the classic DQN and significantly outperformed the random action baseline. The results demonstrate the effectiveness of integrating advanced components from the Rainbow algorithm.
-
-*Detailed graphs and performance metrics are available in the [report.pdf](report.pdf).*
 
 ## Repository Structure
 

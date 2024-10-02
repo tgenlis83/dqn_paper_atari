@@ -50,9 +50,9 @@ We enhanced the original DQN implementation by integrating several components fr
 #### Testing
 | **Experiment**         | **Average Reward** | **Standard Deviation** | **Max Reward** | **Min Reward** |
 |------------------------|--------------------|------------------------|----------------|----------------|
-| Original DQN           | 5.40      | 3.24          | 11.0  | 0.0  |
-| Rainbow-enhanced DQN   | 47.54      | 17.11          | 110.0  | 17.0  |
-| Random Baseline        | 1.40      | 1.15          | 5.0  | 0.0  |
+| Random Baseline        | 1.40      | 1.15          | 5.00  | 0.00  |
+| Original DQN           | 17.52      | 5.43          | 34.00  | 7.00  |
+| Rainbow-enhanced DQN   | **47.54**      | **17.11**          | **110.00**  | **17.00**  |
 
 The enhanced DQN showed improved performance over the classic DQN and significantly outperformed the random action baseline. Although we could not train the models long enough to achieve the highest scores due to computational limitations, the learning curves indicate that with longer training, the models would continue to improve, potentially reaching higher performance levels.
 

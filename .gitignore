@@ -7,6 +7,10 @@ __pycache__/
 # C extensions
 *.so
 
+notebooks/random.ipynb
+
+b_model_checkpoint_499999.pt
+
 # Distribution / packaging
 .Python
 build/

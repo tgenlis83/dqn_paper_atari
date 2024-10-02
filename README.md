@@ -1,10 +1,10 @@
 # Deep Q-Network (DQN) Implementation and Upgrades
 
-![fun_gif](imgs/smaller_fun_gif.gif)
+![fun_gif](imgs/small_funnier_gif.gif)
 
 ## Introduction
 
-*For more detailed information about the project, such as hyperparameters, please refer to the [report.pdf](report.pdf) in the repository.*
+> Please take a look to the [**report.pdf**](report.pdf) in the repository for more detailed information about the project, such as hyperparameters and more.
 
 This project re-implements and enhances the Deep Q-Network (DQN) originally introduced by Mnih et al. (2015). We replicated the DQN with modifications to accommodate computational constraints and integrated components from the Rainbow algorithm by Hessel et al. (2017) including dueling networks, prioritized experience replay, n-step returns, and noisy networks.
 
@@ -41,6 +41,10 @@ We enhanced the original DQN implementation by integrating several components fr
 
 ### Performance Metrics
 
+#### Training
+![Learning Curves](imgs/comparison.png)
+
+#### Testing
 | **Experiment**         | **Average Reward** | **Standard Deviation** | **Max Reward** | **Min Reward** |
 |------------------------|--------------------|------------------------|----------------|----------------|
 | Original DQN           | 5.40      | 3.24          | 11.0  | 0.0  |

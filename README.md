@@ -1,6 +1,6 @@
 # Deep Q-Network (DQN) Implementation and Upgrades
 
-![fun_gif](imgs/small_funnier_gif.gif)
+![fun_gif](imgs/holy_moly.gif)
 
 ## Introduction
 

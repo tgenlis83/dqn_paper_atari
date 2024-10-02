@@ -9,7 +9,8 @@ __pycache__/
 
 notebooks/random.ipynb
 
-b_model_checkpoint_499999.pt
+b*_model_checkpoint_*.pt
+rl_dqn_*.ipynb
 
 # Distribution / packaging
 .Python

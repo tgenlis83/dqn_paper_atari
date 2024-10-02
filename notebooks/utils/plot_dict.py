@@ -10,15 +10,15 @@ def plot_dict(plot_infos, REPLAY_START_SIZE, dpi=200):
     window_size = 50
 
     # Calculate the moving averages
-    smoothed_rewards = moving_average(plot_infos["total_reward"], window_size)
-    smoothed_q_values = moving_average(plot_infos["total_q_values"], window_size)
-    smoothed_loss = moving_average(plot_infos["total_loss"], window_size)
+    smoothed_rewards = moving_average(plot_infos["episode_rewards"], window_size)
+    smoothed_q_values = moving_average(plot_infos["mean_q_value"], window_size)
+    smoothed_loss = moving_average(plot_infos["loss"], window_size)
 
     fig, ax1 = plt.subplots(figsize=(12, 5), dpi=dpi)
 
     # Plot smoothed total rewards
     ax1.plot(
-        plot_infos["total_steps"][: len(smoothed_rewards)],
+        plot_infos["steps"][: len(smoothed_rewards)],
         smoothed_rewards,
         label="Total Reward (Smoothed)",
         color="green",
@@ -34,7 +34,7 @@ def plot_dict(plot_infos, REPLAY_START_SIZE, dpi=200):
     ax2 = ax1.twinx()
     ax2.spines["right"].set_position(("outward", 60))
     ax2.plot(
-        plot_infos["total_steps"][: len(smoothed_q_values)],
+        plot_infos["steps"][: len(smoothed_q_values)],
         smoothed_q_values,
         label="Q-Value (Smoothed)",
         color="blue",
@@ -46,7 +46,7 @@ def plot_dict(plot_infos, REPLAY_START_SIZE, dpi=200):
     ax3 = ax1.twinx()
     ax3.spines["right"].set_position(("outward", 120))
     ax3.plot(
-        plot_infos["total_steps"][: len(smoothed_loss)],
+        plot_infos["steps"][: len(smoothed_loss)],
         smoothed_loss,
         label="Loss (Smoothed)",
         color="red",

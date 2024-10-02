@@ -5,9 +5,9 @@ def moving_average(data, window_size):
     return np.convolve(data, np.ones(window_size) / window_size, mode="valid")
 
 
-def plot_dict(plot_infos, REPLAY_START_SIZE, dpi=100):
+def plot_dict(plot_infos, REPLAY_START_SIZE, dpi=200):
     # Define the window size for moving average
-    window_size = 500
+    window_size = 50
 
     # Calculate the moving averages
     smoothed_rewards = moving_average(plot_infos["total_reward"], window_size)
@@ -62,7 +62,7 @@ def plot_dict(plot_infos, REPLAY_START_SIZE, dpi=100):
         lines.extend(line)
         labels.extend(label)
 
-    ax1.legend(lines, labels, loc="upper left")
+    ax1.legend(lines, labels, loc="lower right")
 
     fig.tight_layout()
     plt.title("Training Progress")

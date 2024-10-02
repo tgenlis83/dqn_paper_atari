@@ -29,6 +29,7 @@ To ensure that improvements are meaningful and not due to environmental dynamics
 
 ![Rainbow DQN Architecture](imgs/rdqn.png)
 
+The network has 6,507,690 trainable parameters.
 We enhanced the original DQN implementation by integrating several components from the Rainbow algorithm:
 
 1. **Double DQN**: Addresses overestimation bias by decoupling action selection and evaluation.

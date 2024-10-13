@@ -43,7 +43,7 @@ To assess the performance of our trained agents, we conducted a series of tests 
 
 |       Agent | Mean Score | Standard Deviation | Minimum Score | Maximum Score |
 | ----------: | :--------: | :----------------: | :-----------: | :-----------: |
-|      Random |     -      |         -          |       -       |       -       |
+|      Random |   1.364    |       1.394        |      0.0      |      7.0      |
 |  Double DQN |   2.028    |       2.560        |      0.0      |      9.0      |
 | Rainbow DQN |   60.512   |       33.293       |      8.0      |     353.0     |
 
@@ -51,7 +51,7 @@ To assess the performance of our trained agents, we conducted a series of tests 
 
 |       Agent | Mean Score | Standard Deviation | Minimum Score | Maximum Score |
 | ----------: | :--------: | :----------------: | :-----------: | :-----------: |
-|      Random |     -      |         -          |       -       |       -       |
+|      Random |   1.364    |       1.394        |      0.0      |      7.0      |
 |  Double DQN |  163.254   |       78.810       |     30.0      |     385.0     |
 | Rainbow DQN |   58.594   |       22.192       |     23.0      |     257.0     |
 
@@ -61,7 +61,7 @@ To assess the performance of our trained agents, we conducted a series of tests 
 
 |       Agent | Mean Score | Standard Deviation | Minimum Score | Maximum Score |
 | ----------: | :--------: | :----------------: | :-----------: | :-----------: |
-|      Random |     -      |         -          |       -       |       -       |
+|      Random |   242.382  |       74.342       |      63.0     |     504.0     |
 |  Double DQN |  1673.888  |      544.315       |     651.0     |    4158.0     |
 | Rainbow DQN |  4883.154  |      2096.328      |     871.0     |    9792.0
 
@@ -69,7 +69,7 @@ To assess the performance of our trained agents, we conducted a series of tests 
 
 |       Agent | Mean Score | Standard Deviation | Minimum Score | Maximum Score |
 | ----------: | :--------: | :----------------: | :-----------: | :-----------: |
-|      Random |     -      |         -          |       -       |       -       |
+|      Random |   242.382  |       74.342       |      63.0     |     504.0     |
 |  Double DQN |  2144.93   |      640.198       |     744.0     |    5098.0     |
 | Rainbow DQN |  4750.356  |      1852.385      |     776.0     |    9073.0     |
 <!-- ##### Performance After 1.5 Million Steps with Transfer Learning and 32K TUF

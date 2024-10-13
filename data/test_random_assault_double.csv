@@ -1,0 +1,2 @@
+checkpoint_file,mean_reward,std_reward,min_reward,max_reward
+random_agent,242.382,74.34188641674356,63.0,504.0

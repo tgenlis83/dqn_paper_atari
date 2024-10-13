@@ -1,0 +1,11 @@
+checkpoint_file,mean_reward,std_reward,min_reward,max_reward
+../best_training_10K/assault/assault_double_checkpoint500000.pt,751.66,95.96047311263112,441.0,1260.0
+../best_training_10K/assault/assault_double_checkpoint1000000.pt,524.188,112.17228113932603,231.0,850.0
+../best_training_10K/assault/assault_double_checkpoint1500000.pt,1194.902,330.708403878704,546.0,2454.0
+../best_training_10K/assault/assault_double_checkpoint2000000.pt,1030.676,255.14021051962783,483.0,2087.0
+../best_training_10K/assault/assault_double_checkpoint2500000.pt,1501.452,499.64690702134845,609.0,4550.0
+../best_training_10K/assault/assault_double_checkpoint3000000.pt,2144.93,640.1981889227742,744.0,5098.0
+../best_training_10K/assault/assault_double_checkpoint3500000.pt,731.194,134.4376448916002,315.0,1310.0
+../best_training_10K/assault/assault_double_checkpoint4000000.pt,1148.726,291.7444753958505,315.0,2528.0
+../best_training_10K/assault/assault_double_checkpoint4500000.pt,951.928,204.11025161906983,399.0,1742.0
+../best_training_10K/assault/assault_double_checkpoint5000000.pt,1717.43,651.8078713087162,294.0,3984.0

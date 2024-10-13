@@ -1,0 +1,11 @@
+checkpoint_file,mean_reward,std_reward,min_reward,max_reward
+../best_training_32K/breakout/breakout_double_checkpoint500000.pt,0.322,1.3410130498992172,0.0,10.0
+../best_training_32K/breakout/breakout_double_checkpoint1000000.pt,1.934,2.521436891932852,0.0,9.0
+../best_training_32K/breakout/breakout_double_checkpoint1500000.pt,1.7924151696606787,3.0374939697153813,0.0,12.0
+../best_training_32K/breakout/breakout_double_checkpoint2000000.pt,1.938,2.442571595675345,0.0,9.0
+../best_training_32K/breakout/breakout_double_checkpoint2500000.pt,2.2275449101796405,2.758423817430148,0.0,9.0
+../best_training_32K/breakout/breakout_double_checkpoint3000000.pt,1.7514910536779325,3.0266990797736186,0.0,11.0
+../best_training_32K/breakout/breakout_double_checkpoint3500000.pt,1.886,3.108215565239966,0.0,11.0
+../best_training_32K/breakout/breakout_double_checkpoint4000000.pt,1.314,2.0355353104281932,0.0,17.0
+../best_training_32K/breakout/breakout_double_checkpoint4500000.pt,1.87,2.536355653294703,0.0,9.0
+../best_training_32K/breakout/breakout_double_checkpoint5000000.pt,2.028,2.560315605545535,0.0,9.0

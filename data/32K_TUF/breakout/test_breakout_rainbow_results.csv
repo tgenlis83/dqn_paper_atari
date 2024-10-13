@@ -1,0 +1,11 @@
+checkpoint_file,mean_reward,std_reward,min_reward,max_reward
+./breakout_rainbow_checkpoint00500000.pt,5.954,2.4899566261282544,1.0,15.0
+./breakout_rainbow_checkpoint01000000.pt,38.942,13.389795965585137,11.0,85.0
+./breakout_rainbow_checkpoint01500000.pt,46.752,19.40738251284804,10.0,258.0
+./breakout_rainbow_checkpoint02000000.pt,41.044,17.160363166320227,3.0,201.0
+./breakout_rainbow_checkpoint02500000.pt,42.318,14.865021897057535,11.0,102.0
+./breakout_rainbow_checkpoint03000000.pt,47.736,16.454978091750835,11.0,120.0
+./breakout_rainbow_checkpoint03500000.pt,43.636,19.989684939988425,9.0,248.0
+./breakout_rainbow_checkpoint04000000.pt,49.748,20.94479639433146,11.0,295.0
+./breakout_rainbow_checkpoint04500000.pt,39.792,18.55555808915485,9.0,222.0
+./breakout_rainbow_checkpoint05000000.pt,60.512,33.29333050327047,8.0,353.0

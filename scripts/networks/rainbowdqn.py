@@ -13,7 +13,9 @@ class RainbowDeepQNetwork(nn.Module):
     - Noisy linear layers for exploration.
     """
 
-    def __init__(self, v_min: float, v_max: float, n_atoms: int, n_actions: int):
+    def __init__(
+        self, v_min: float, v_max: float, n_atoms: int, n_actions: int, device: str
+    ):
         """
         Initializes the RainbowDeepQNetwork.
 
@@ -22,10 +24,11 @@ class RainbowDeepQNetwork(nn.Module):
             v_max (float): Maximum value of the support for the distributional Q-learning.
             n_atoms (int): Number of atoms in the distributional representation of Q-values.
             n_actions (int): Number of possible actions.
+            device (str): Device to run the network on.
         """
         self.v_min = v_min
         self.v_max = v_max
-        
+
         super(RainbowDeepQNetwork, self).__init__()
 
         # Convolutional layers for processing the input frames
@@ -38,6 +41,8 @@ class RainbowDeepQNetwork(nn.Module):
             nn.ReLU(),
             nn.Flatten(),
         )
+        self.device = device
+        self.support = torch.linspace(v_min, v_max, n_atoms, device=device)
 
         # Dimensions after the convolutional layers
         self.fc_input_dim = 7 * 7 * 64
@@ -70,7 +75,7 @@ class RainbowDeepQNetwork(nn.Module):
             torch.Tensor: Output tensor representing the Q-value distributions for each action.
         """
         # Normalize input and pass through convolutional layers
-        x = self.conv(x / 255.0)
+        x = self.conv(x.float() / 255.0)
 
         # Get value and advantage streams
         value = self.value_stream(x).unsqueeze(1)  # Shape: (batch_size, 1, N_ATOMS)
@@ -116,14 +121,11 @@ class RainbowDeepQNetwork(nn.Module):
             torch.Tensor: Projected distribution for the current state.
         """
         batch_size = rewards.size(0)
-        support = torch.linspace(
-            self.v_min, self.v_max, self.n_atoms, device=self.device
-        )
         delta_z = (self.v_max - self.v_min) / (self.n_atoms - 1)
 
         rewards = rewards.unsqueeze(1)
         dones = dones.unsqueeze(1)
-        support = support.unsqueeze(0).expand_as(next_dist)
+        support = self.support.unsqueeze(0).expand_as(next_dist)
 
         Tz = rewards + discount * support * (1 - dones)
         Tz = Tz.clamp(self.v_min, self.v_max)

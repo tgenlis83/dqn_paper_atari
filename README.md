@@ -150,6 +150,14 @@ Using pre-trained weights from one game, transfer learning was applied to anothe
 
 ## Technical Instructions
 
+### Setup
+
+Install the required packages with:
+
+```bash
+pip install -r requirements.txt
+```
+
 ### Training
 
 To train models, use:
@@ -163,15 +171,7 @@ python scripts/train.py --config experiments/<config_file>.json
 To test trained models:
 
 ```bash
-python scripts/test.py --config experiments/<config_file>.json --checkpoint_folder <path_to_checkpoint> --model_type {dqn,rainbow}
-```
-
-### Setup
-
-Install the required packages with:
-
-```bash
-pip install -r requirements.txt
+python scripts/test.py --config experiments/<config_file>.json --checkpoint_folder <path_to_checkpoint> --model_type {double,rainbow} --env_num <env_number>
 ```
 
 ## Remarks and Insights

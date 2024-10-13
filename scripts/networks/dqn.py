@@ -42,6 +42,6 @@ class DeepQNetwork(nn.Module):
             Tensor: Output tensor representing estimated Q-values for each action.
         """
         # Normalize input and pass through convolutional layers
-        x = self.conv(x / 255.0)
+        x = self.conv(x.float() / 255.0)
         # Pass through fully connected layers
         return self.linear(x)

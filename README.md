@@ -1,77 +1,218 @@
-# Deep Q-Network (DQN) Implementation and Upgrades
+# Rainbow DQN Reimplementation: Results & Technical Overview
 
 <p align="center">
-  <img width="350" height="285" src="imgs/holy_moly.gif">
+  <img src="imgs/videos/assault.gif" alt="Assault Gameplay" />
+  <img src="imgs/videos/breakout.gif" alt="Breakout Gameplay" />
 </p>
 
 ## Introduction
 
-> Please take a look to the [**report.pdf**](report.pdf) in the repository for more detailed information about the project, such as hyperparameters and more.
+This project reimplements key components of the Rainbow DQN architecture to train reinforcement learning agents for Atari games, specifically focusing on training efficiency using limited resources (Apple Silicon M3 Pro with 18 GB unified memory). Atari 2600 games are used as benchmarks to test the performance of reinforcement learning algorithms with high-dimensional inputs (raw pixels). The goal is to demonstrate that meaningful DRL research can be achieved without massive computational resources.
 
-This project re-implements and enhances the Deep Q-Network (DQN) originally introduced by Mnih et al. (2015). We replicated the DQN with modifications to accommodate computational constraints and integrated components from the Rainbow algorithm by Hessel et al. (2017) including dueling networks, prioritized experience replay, n-step returns, and noisy networks.
+## Key Reimplemented Components
 
-Due to limited computational resources, we were unable to train the models long enough to reach the highest scores reported in the original paper. However, evaluations against a random action baseline showed significant performance improvements, and the learning curves indicate that with extended training, especially for the Rainbow-enhanced DQN, the models would continue to improve. This demonstrates the effectiveness of the enhancements and the potential for further development.
+![rdqn](imgs/architecture/rdqn.png)
 
-## Motivation
-
-Our goal was to deepen our understanding of reinforcement learning and deep learning by reimplementing the DQN and integrating Rainbow components. This hands-on approach allowed us to explore foundational mechanics and evaluate the impact of advanced RL techniques, satisfying our curiosity and contributing to our educational growth.
-
-### Environment
-
-- **Game**: Atari 2600 Breakout
-- **Goal**: Achieve the highest score by breaking bricks with a ball using a paddle. The agent receives a reward for each brick broken and aims to maximize the total reward.
-- **Typical Human Strategy**: Focus on breaking through the sides to reach the top of the brick wall.
-- **Reason of Choice**: Manageable complexity and availability of comparative metrics.
-
-### Baseline Comparison
-
-To ensure that improvements are meaningful and not due to environmental dynamics, we compared the agent's performance to a *random action baseline*.
-
-## Upgrades Using Rainbow Components
-
-![Rainbow DQN Architecture](imgs/rdqn.png)
-
-The network has 6,507,690 trainable parameters.
-We enhanced the original DQN implementation by integrating several components from the Rainbow algorithm:
-
-1. **Double DQN**: Addresses overestimation bias by decoupling action selection and evaluation.
-2. **Dueling Network Architecture**: Separates the estimation of state value and advantage for each action.
-3. **Prioritized Experience Replay**: Samples important transitions more frequently based on temporal-difference (TD) error.
-4. **N-Step Returns**: Uses multi-step returns for better learning from delayed rewards.
-5. **Noisy Networks**: Adds stochasticity to network weights to improve exploration.
+- **Noisy Networks**: Introduce parameterized noise into the network to improve exploration.
+- **N-Step Learning**: Uses multi-step returns to provide a richer learning signal, improving long-term planning.
+- **Double DQN**: Reduces overestimation bias by separating action selection and evaluation.
+- **Dueling Networks**: Splits the estimation of state values and action advantages, enhancing learning efficiency.
+- **Distributional DQN**: Models the distribution of rewards, allowing the agent to capture uncertainty in returns.
+- **Prioritized Experience Replay**: Samples significant experiences more frequently, speeding up learning.
+- We did not implement A2C (for resources and simplicity reasons), but it is included in the Rainbow DQN paper.
 
 ## Results
 
-### Performance Metrics
+The project explores training models for two games: *Breakout* and *Assault*, comparing **Double DQN** and **Rainbow DQN** across two different target update frequencies (32K and 10K). The Rainbow DQN outperforms Double DQN, especially in the more complex *Assault* game.
 
-#### Training
-![Learning Curves](imgs/comparison.png)
+### Evaluation Protocol
 
-#### Testing
-| **Experiment**         | **Average Reward** | **Standard Deviation** | **Max Reward** | **Min Reward** |
-|------------------------|--------------------|------------------------|----------------|----------------|
-| Random Baseline        | 1.40      | 1.15          | 5.00  | 0.00  |
-| Original DQN           | 17.52      | 5.43          | 34.00  | 7.00  |
-| Rainbow-enhanced DQN   | **47.54**      | **17.11**          | **110.00**  | **17.00**  |
+To assess the performance of our trained agents, we conducted a series of tests under standardized conditions. Each agent was evaluated over 500 episodes, following an initial warm-up phase of 100 episodes. Empirically, this warm-up improved the mean scores by allowing agents to stabilize their performance before formal evaluation.
 
-The enhanced DQN showed improved performance over the classic DQN and significantly outperformed the random action baseline. Although we could not train the models long enough to achieve the highest scores due to computational limitations, the learning curves indicate that with longer training, the models would continue to improve, potentially reaching higher performance levels.
+- **Warm-Up Games:** 100 episodes.
+- **Evaluation Games:** 500 episodes with 5 lives per game.
+- **Preprocessing:** Identical to the training phase, including frame stacking and environment wrappers.
 
-The results demonstrate the effectiveness of integrating advanced components from the Rainbow algorithm and suggest that extended training would allow the agent to develop more sophisticated strategies, such as focusing on breaking through the sides to reach the top of the brick wall in Breakout.
+### Evaluation Metrics
 
-## Repository Structure
+#### Performance After 5 Million Steps
 
-- [`/notebooks/`](notebooks/): Jupyter notebooks containing the code for each version of the implementation.
-- [`/checkpoints/`](checkpoints/): Saved model checkpoints at different timesteps during training.
-- [`/data/`](data/): Plot data and logs generated during training.
-- [`/notebooks/utils/`](notebooks/utils/): Utility functions for plotting.
-- [`/imgs/`](imgs/): Images used in the README and report.
-- [`/report.pdf`](report.pdf): The full report detailing the implementation and results.
+##### Breakout
+
+- **Results with 32K Target Update Frequency (TUF):**
+
+|       Agent | Mean Score | Standard Deviation | Minimum Score | Maximum Score |
+| ----------: | :--------: | :----------------: | :-----------: | :-----------: |
+|      Random |     -      |         -          |       -       |       -       |
+|  Double DQN |   2.028    |       2.560        |      0.0      |      9.0      |
+| Rainbow DQN |   60.512   |       33.293       |      8.0      |     353.0     |
+
+- **Results with 10K Target Update Frequency:**
+
+|       Agent | Mean Score | Standard Deviation | Minimum Score | Maximum Score |
+| ----------: | :--------: | :----------------: | :-----------: | :-----------: |
+|      Random |     -      |         -          |       -       |       -       |
+|  Double DQN |  163.254   |       78.810       |     30.0      |     385.0     |
+| Rainbow DQN |   58.594   |       22.192       |     23.0      |     257.0     |
+
+##### Assault
+
+- **Results with 32K Target Update Frequency:**
+
+|       Agent | Mean Score | Standard Deviation | Minimum Score | Maximum Score |
+| ----------: | :--------: | :----------------: | :-----------: | :-----------: |
+|      Random |     -      |         -          |       -       |       -       |
+|  Double DQN |  1673.888  |      544.315       |     651.0     |    4158.0     |
+| Rainbow DQN |  4883.154  |      2096.328      |     871.0     |    9792.0
+
+- **Results with 10K Target Update Frequency:**
+
+|       Agent | Mean Score | Standard Deviation | Minimum Score | Maximum Score |
+| ----------: | :--------: | :----------------: | :-----------: | :-----------: |
+|      Random |     -      |         -          |       -       |       -       |
+|  Double DQN |  2144.93   |      640.198       |     744.0     |    5098.0     |
+| Rainbow DQN |  4750.356  |      1852.385      |     776.0     |    9073.0     |
+<!-- ##### Performance After 1.5 Million Steps with Transfer Learning and 32K TUF
+
+###### Rainbow DQN on Breakout 
+
+|          Agent | Mean Score | Standard Deviation | Minimum Score | Maximum Score |
+| -------------: | :--------: | :----------------: | :-----------: | :-----------: |
+|         Random |     -      |         -          |       -       |       -       |
+|   From Assault |   38.922   |       11.40        |     13.0      |     79.0      |
+| Random Weights |   46.752   |       19.407       |     10.0      |     258.0     |
+
+###### Rainbow DQN on Assault
+
+|          Agent | Mean Score | Standard Deviation | Minimum Score | Maximum Score |
+| -------------: | :--------: | :----------------: | :-----------: | :-----------: |
+|         Random |     -      |         -          |       -       |       -       |
+|  From Breakout |  1078.698  |      296.595       |     651.0     |    2163.0     |
+| Random Weights |   1801.4   |      648.836       |     682.0     |    3344.0     | -->
+
+## Environment Wrappers
+
+To enhance learning efficiency and agent performance, we implemented several environment wrappers using the Gymnasium framework:
+
+- **No-Op Reset**: Randomizes the initial game state by executing a random number (1-30) of **NOOP** actions at the start of each episode, promoting robustness.
+- **Fire-On-Reset**: Automatically issues a specific action (e.g., **FIRE** in Breakout) upon reset or after a life is lost, ensuring immediate interaction with the environment.
+- **Preprocessing of Gym Environment**:
+  - **Resizing**: Downscaled frames to 84×84 pixels.
+  - **Grayscale Conversion**: Converted RGB images to grayscale.
+  - **Normalization**: Scaled images from 255-0 to 1.0-0.0.
+- **Frame Skipping**: Repeats the agent's selected action for a fixed number of frames (typically 4), reducing computational load and focusing on longer-term strategies.
+- **Frame Stacking**: Stacks the last four frames along the channel dimension (4, 84, 84) to provide temporal context, using **lazy frame stacking** to optimize memory usage.
+- **Enhanced Statistics Access**: Exposes additional game statistics (e.g., lives remaining) to improve the agent's ability to detect significant events and assign accurate rewards.
+- **Terminal Signal on Life Loss**: Treats life loss as a terminal state (not a reset), providing immediate feedback to the agent about the consequences of its actions.
+
+## Hyperparameters
+
+We carefully selected hyperparameters to optimize the performance of both the Double DQN and Rainbow DQN implementations. They are inspired by the original paper.
+
+| **Hyperparameter**                      | **Double DQN**   | **Rainbow DQN**                                             |
+| --------------------------------------- | ---------------- | ----------------------------------------------------------- |
+| **Learning Rate**                       | 0.00025          | 0.00025                                                     |
+| **Discount Factor (γ)**                 | 0.99             | 0.99                                                        |
+| **Replay Memory Size**                  | 300,000          | 300,000                                                     |
+| **Mini-Batch Size**                     | 32               | 32                                                          |
+| **Target Update Frequency**             | 32,000 or 10,000 | 32,000 or 10,000                                            |
+| **Frame Skip**                          | 4                | 4                                                           |
+| **Min Epsilon**                         | 0.1              | N/A                                                         |
+| **Max Epsilon**                         | 1.0              | N/A                                                         |
+| **Epsilon Decay Phase**                 | 0.1              | N/A                                                         |
+| **Max Steps**                           | 5,000,000        | 5,000,000                                                   |
+| **Replay Start Size**                   | 80,000           | 80,000                                                      |
+| **Save Frequency**                      | 500,000          | 500,000                                                     |
+| **V<sub>min</sub>**                     | N/A              | -10                                                         |
+| **V<sub>max</sub>**                     | N/A              | 10                                                          |
+| **Number of Atoms (N<sub>atoms</sub>)** | N/A              | 51                                                          |
+| **Δz (Atom Gap)**                       | N/A              | (V<sub>max</sub> - V<sub>min</sub>)/(N<sub>atoms</sub> - 1) |
+| **N-Step**                              | N/A              | 3                                                           |
+| **Alpha (α)**                           | N/A              | 0.5                                                         |
+| **Beta<sub>start</sub>**                | N/A              | 0.4                                                         |
+| **Beta<sub>frames</sub>**               | N/A              | Max Steps - Replay Start Size                               |
+
+**Training Graphs**:
+
+![Training Curves](imgs/graphs/training.png)
+
+### Key Observations
+
+- **Assault**: Rainbow DQN performed significantly better than Double DQN, showing faster convergence and higher rewards.
+- **Breakout**: Double DQN initially outperformed Rainbow DQN, but Rainbow DQN showed potential for superior performance with longer training.
+  
+<!-- ### Transfer Learning
+Using pre-trained weights from one game, transfer learning was applied to another game. This resulted in faster convergence and better performance, demonstrating the value of shared feature representations in similar environments.
+
+**Transfer Learning Results**:
+
+![Transfer Learning](imgs/transfer_learning.png) -->
+
+## Technical Instructions
+
+### Training
+
+To train models, use:
+
+```bash
+python scripts/train.py --config experiments/<config_file>.json
+```
+
+### Testing
+
+To test trained models:
+
+```bash
+python scripts/test.py --config experiments/<config_file>.json --checkpoint_folder <path_to_checkpoint> --model_type {dqn,rainbow}
+```
+
+### Setup
+
+Install the required packages with:
+
+```bash
+pip install -r requirements.txt
+```
+
+## Remarks and Insights
+
+### Key Insights
+
+1. **Importance of Hyperparameter Tuning**: The impact of the **Target Update Frequency (TUF)** is game-dependent. In *Assault*, a higher TUF (32K) led to more stable learning and better long-term performance, while in *Breakout*, the simpler Double DQN benefited from a lower TUF (10K) for faster convergence. This highlights the need to adjust hyperparameters based on the game's complexity.
+  
+2. **Rainbow DQN’s Advantage in Complex Games**: Rainbow DQN’s architecture, combining multiple improvements (e.g., noisy networks, multi-step learning, distributional Q-learning), showed its strength in more complex games like *Assault*, where it outperformed Double DQN by a large margin. The integrated improvements are particularly useful in environments requiring deeper exploration and learning from long-term rewards.
+
+3. **Overfitting and Underfitting Dynamics**: Lower TUF values (10K) helped achieve faster initial performance, but led to overfitting in the long run, especially in more complex environments like *Assault*. In contrast, higher TUF (32K) prevented overfitting, offering more generalization in extended training sessions.
+
+4. **Transfer Learning Effectiveness**: Transfer learning from one game to another allowed the models to leverage shared visual patterns and dynamics, accelerating the learning process. This demonstrates the potential of building generalized agents capable of adapting to different games or tasks by transferring learned knowledge.
+
+5. **Frame Stacking and Lazy Frames**: Using four-frame stacking enabled the agent to capture motion information in dynamic environments efficiently, and lazy frame implementation optimized memory usage. This was crucial in achieving faster training without compromising performance, especially given limited computational resources.
+
+### Future Directions
+
+- **Longer Training Duration**: Extending training steps beyond 5 million could further explore the potential of Rainbow DQN, particularly in less complex games like *Breakout* where the architecture benefits from prolonged training.
+  
+- **Game-Specific Tuning**: Fine-tuning hyperparameters like TUF and learning rate for each game can further enhance performance, especially as complexity varies significantly across Atari games.
+  
+- **Exploring More Components**: Conducting ablation studies to evaluate the individual contributions of Rainbow DQN’s components (e.g., noisy networks, dueling networks) could provide insights into which improvements drive performance gains in specific environments.
+
+## Code Performance
+
+On a MacBook Pro with an M3 Pro chip (MPS device in PyTorch) and 18 GB of unified memory with default hyperparameters, when memory replay is filled, the following performance was observed :
+
+- training double DQN **~400 steps/s** (or ~3h30 for 5M steps)
+- training on Rainbow DQN **~200 steps/s** (or ~7h for 5M steps)
+
+This can be improved by using a CUDA device, which is not available on Apple Silicon M3 Pro. On Kaggle, the training speed was improved, as long as the environments were not parallelized, for this use a powerful CPU.
 
 ## References
 
-- [1] Mnih, V., Kavukcuoglu, K., Silver, D. et al. (2015). *Human-level control through deep reinforcement learning*. Nature, 518, 529–533. [https://doi.org/10.1038/nature14236](https://doi.org/10.1038/nature14236)
-- [2] Hessel, M., et al. (2017). *Rainbow: Combining Improvements in Deep Reinforcement Learning*. arXiv preprint arXiv:1710.02298. [https://arxiv.org/abs/1710.02298](https://arxiv.org/abs/1710.02298)
-
-## Acknowledgments
-
-We would like to thank the authors of the original papers for their foundational work in reinforcement learning and deep learning.
+1. Mnih, V., Kavukcuoglu, K., Silver, D., et al. (2015). *Human-level control through deep reinforcement learning*. Nature, 518, 529–533. [Nature](https://doi.org/10.1038/nature14236)
+2. Hessel, M., Modayil, J., van Hasselt, H., et al. (2018). *Rainbow: Combining Improvements in Deep Reinforcement Learning*. Proceedings of the AAAI Conference on Artificial Intelligence, 32(1). [arXiv](https://arxiv.org/abs/1710.02298)
+3. Fortunato, M., Azar, M. G., Piot, B., Menick, J., Blundell, C., Legg, S., & Wierstra, D. (2017). *Noisy Networks for Exploration*. [arXiv](https://arxiv.org/abs/1706.10295)
+4. Schaul, T., Quan, J., Antonoglou, I., & Silver, D. (2015). *Prioritized Experience Replay*. [arXiv](https://arxiv.org/abs/1511.05952)
+5. Van Hasselt, H., Guez, A., & Silver, D. (2016). *Deep reinforcement learning with double Q-learning*. In Proceedings of AAAI Conference on Artificial Intelligence (pp. 2094–2100).
+6. Wang, Z., Schaul, T., Hessel, M., van Hasselt, H., Lanctot, M., & de Freitas, N. (2016). *Dueling Network Architectures for Deep Reinforcement Learning*. [arXiv](https://arxiv.org/abs/1511.06581)
+7. Bellemare, M. G., Dabney, W., & Munos, R. (2017). *A Distributional Perspective on Reinforcement Learning*. [arXiv](https://arxiv.org/abs/1707.06887)
+8. Sutton, R.S. (1988). *Learning to predict by the methods of temporal differences*. Machine Learning, 3(1), 9–44. [DOI](https://doi.org/10.1007/BF00115009)
+9. Chen, Y., Liu, Z., Yan, J., Li, H., Jin, O., & Yang, Q. (2020). *Pre-training Tasks for Embedding-based Large Language Models*. In Proceedings of the 2020 Conference on Empirical Methods in Natural Language Processing (EMNLP) (pp. 3755-3765).

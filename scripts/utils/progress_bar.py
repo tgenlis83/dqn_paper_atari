@@ -17,7 +17,7 @@ class ProgressBar:
         total_steps : int
             Total number of steps for the progress bar.
         """
-        self.progress_bar = tqdm(range(total_steps), desc="Training Progress")
+        self.progress_bar = tqdm(range(total_steps + 1), desc="Training Progress")
 
     def update(self, training_log: TrainingLog, buffer: list) -> None:
         """

@@ -44,7 +44,7 @@ class TrainingLog:
         self.history["loss"].append(
             self.episode_loss / self.episode_steps if self.episode_steps > 0 else 0
         )
-    
+
     def reset_episode(self) -> None:
         """
         Resets the episode-specific statistics.

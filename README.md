@@ -21,6 +21,18 @@ This project reimplements key components of the Rainbow DQN architecture to trai
 - **Prioritized Experience Replay**: Samples significant experiences more frequently, speeding up learning.
 - We did not implement A2C (for resources and simplicity reasons), but it is included in the Rainbow DQN paper.
 
+### Description of Key Files and Directories:
+
+- **`data/`**: Stores training results, including model checkpoints and logs, organized by target update frequency (`10K_TUF` and `32K_TUF`).
+- **`experiments/`**: JSON configuration files for different experiments, organized by training setups like 10K TUF, 32K TUF, and transfer learning.
+- **`imgs/`**: Images and graphs for visualizations, such as training curves and game screenshots.
+- **`notebooks/`**: Jupyter notebook (`plots.ipynb`) for generating training performance graphs and analysis.
+- **`onnx/`**: Models saved in ONNX format for compatibility and exporting (generated on Breakout).
+- **`requirements.txt`**: Python dependencies required for the project.
+- **`scripts/`**: Core scripts for training and testing:
+
+This structure is designed to keep training, testing, and analysis organized, with clear separation between configuration files, model checkpoints, and utility functions.
+
 ## Results
 
 The project explores training models for two games: *Breakout* and *Assault*, comparing **Double DQN** and **Rainbow DQN** across two different target update frequencies (32K and 10K). The Rainbow DQN outperforms Double DQN, especially in the more complex *Assault* game.
@@ -216,3 +228,8 @@ This can be improved by using a CUDA device, which is not available on Apple Sil
 7. Bellemare, M. G., Dabney, W., & Munos, R. (2017). *A Distributional Perspective on Reinforcement Learning*. [arXiv](https://arxiv.org/abs/1707.06887)
 8. Sutton, R.S. (1988). *Learning to predict by the methods of temporal differences*. Machine Learning, 3(1), 9–44. [DOI](https://doi.org/10.1007/BF00115009)
 9. Chen, Y., Liu, Z., Yan, J., Li, H., Jin, O., & Yang, Q. (2020). *Pre-training Tasks for Embedding-based Large Language Models*. In Proceedings of the 2020 Conference on Empirical Methods in Natural Language Processing (EMNLP) (pp. 3755-3765).
+
+## Appendix
+
+Detailed training graphs.
+![](imgs/graphs/detailled%20training.png)

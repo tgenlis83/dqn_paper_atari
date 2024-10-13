@@ -1,0 +1,21 @@
+{
+    "game_name": "Assault",
+    "experiment_name": "b=>a_1.5m_32k",
+    "learning_rate": 0.00025,
+    "discount_factor": 0.99,
+    "replay_memory_size": 300000,
+    "mini_batch_size": 32,
+    "target_update_freq": 32000,
+    "frame_skip": 4,
+    "max_steps": 5000000,
+    "replay_start_size": 80000,
+    "save_frequency": 500000,
+    "v_min": -10,
+    "v_max": 10,
+    "n_atoms": 51,
+    "n_step": 3,
+    "alpha": 0.5,
+    "beta_start": 0.4,
+    "random_seed": 11,
+    "pretrained_weights": "data/32K_TUF/breakout/breakout_rainbow_checkpoint05000000.pt"
+}

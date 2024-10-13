@@ -1,0 +1,6 @@
+gymnasium[atari,accept-rom-license]==0.29.1
+matplotlib==3.9.2
+numpy==2.1.2
+pandas==2.2.3
+torch==2.4.1
+tqdm==4.66.5

@@ -5,6 +5,8 @@
   <img src="imgs/videos/breakout.gif" alt="Breakout Gameplay" />
 </p>
 
+> Read the [paper.pdf](paper.pdf) for a detailed overview of the project.
+
 ## Introduction
 
 This project reimplements key components of the Rainbow DQN architecture to train reinforcement learning agents for Atari games, specifically focusing on training efficiency using limited resources (Apple Silicon M3 Pro with 18 GB unified memory). Atari 2600 games are used as benchmarks to test the performance of reinforcement learning algorithms with high-dimensional inputs (raw pixels). The goal is to demonstrate that meaningful DRL research can be achieved without massive computational resources.

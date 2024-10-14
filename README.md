@@ -59,6 +59,7 @@ To assess the performance of our trained agents, we conducted a series of tests 
 |     Human   |   31.8     |       -            |     -         |     -         |
 |  Double DQN |   2.028    |       2.560        |      0.0      |      9.0      |
 | Rainbow DQN |   60.512   |       33.293       |      8.0      |     353.0     |
+|   TrRainbow DQN |   71.668   |       37.784        |     18.0      |     314.0      |
 
 - **Results with 10K Target Update Frequency:**
 
@@ -78,7 +79,8 @@ To assess the performance of our trained agents, we conducted a series of tests 
 |      Random |   242.382  |       74.342       |      63.0     |     504.0     |
 |     Human   |   1496.0    |       -            |     -         |     -         |
 |  Double DQN |  1673.888  |      544.315       |     651.0     |    4158.0     |
-| Rainbow DQN |  4883.154  |      2096.328      |     871.0     |    9792.0
+| Rainbow DQN |  4883.154  |      2096.328      |     871.0     |    9792.0     |
+|  TrRainbow DQN |  3104.678  |      963.984       |     849.0     |    7363.0     |
 
 - **Results with 10K Target Update Frequency:**
 
@@ -88,23 +90,6 @@ To assess the performance of our trained agents, we conducted a series of tests 
 |     Human   |   1496.0   |       -            |     -         |     -         |
 |  Double DQN |  2144.93   |      640.198       |     744.0     |    5098.0     |
 | Rainbow DQN |  4750.356  |      1852.385      |     776.0     |    9073.0     |
-<!-- ##### Performance After 1.5 Million Steps with Transfer Learning and 32K TUF
-
-###### Rainbow DQN on Breakout 
-
-|          Agent | Mean Score | Standard Deviation | Minimum Score | Maximum Score |
-| -------------: | :--------: | :----------------: | :-----------: | :-----------: |
-|         Random |     -      |         -          |       -       |       -       |
-|   From Assault |   38.922   |       11.40        |     13.0      |     79.0      |
-| Random Weights |   46.752   |       19.407       |     10.0      |     258.0     |
-
-###### Rainbow DQN on Assault
-
-|          Agent | Mean Score | Standard Deviation | Minimum Score | Maximum Score |
-| -------------: | :--------: | :----------------: | :-----------: | :-----------: |
-|         Random |     -      |         -          |       -       |       -       |
-|  From Breakout |  1078.698  |      296.595       |     651.0     |    2163.0     |
-| Random Weights |   1801.4   |      648.836       |     682.0     |    3344.0     | -->
 
 ## Environment Wrappers
 
@@ -157,12 +142,8 @@ We carefully selected hyperparameters to optimize the performance of both the Do
 - **Assault**: Rainbow DQN performed significantly better than Double DQN, showing faster convergence and higher rewards.
 - **Breakout**: Double DQN initially outperformed Rainbow DQN, but Rainbow DQN showed potential for superior performance with longer training.
   
-<!-- ### Transfer Learning
-Using pre-trained weights from one game, transfer learning was applied to another game. This resulted in faster convergence and better performance, demonstrating the value of shared feature representations in similar environments.
-
-**Transfer Learning Results**:
-
-![Transfer Learning](imgs/transfer_learning.png) -->
+### Transfer Learning
+Using pre-trained weights from one game, transfer learning was applied to another game. This resulted in faster convergence and better performance, demonstrating the value of shared feature representations in similar environments. We utilized 32K TUF models and hyperparameter for transfer learning and trained on 5M steps.
 
 ## Technical Instructions
 

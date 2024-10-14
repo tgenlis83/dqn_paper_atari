@@ -1,6 +1,6 @@
 {
     "game_name": "Breakout",
-    "experiment_name": "a=>b_1.5m_32k",
+    "experiment_name": "a=>b_5m_32k",
     "learning_rate": 0.00025,
     "discount_factor": 0.99,
     "replay_memory_size": 300000,
@@ -16,6 +16,6 @@
     "n_step": 3,
     "alpha": 0.5,
     "beta_start": 0.4,
-    "random_seed": 11,
+    "random_seed": 35,
     "pretrained_weights": "data/32K_TUF/assault/assault_rainbow_checkpoint05000000.pt"
 }

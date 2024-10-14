@@ -1,0 +1,11 @@
+checkpoint_file,mean_reward,std_reward,min_reward,max_reward
+data/32K_TUF/b=>a rb/b=>a_5m_32k_checkpoint00500000.pt,870.614,231.13461230200897,525.0,2520.0
+data/32K_TUF/b=>a rb/b=>a_5m_32k_checkpoint01000000.pt,910.144,187.1890148058908,504.0,1837.0
+data/32K_TUF/b=>a rb/b=>a_5m_32k_checkpoint01500000.pt,1672.592,608.424685179686,651.0,3539.0
+data/32K_TUF/b=>a rb/b=>a_5m_32k_checkpoint02000000.pt,2020.74,661.5480756528584,735.0,3864.0
+data/32K_TUF/b=>a rb/b=>a_5m_32k_checkpoint02500000.pt,2395.062,736.7340375983724,755.0,7186.0
+data/32K_TUF/b=>a rb/b=>a_5m_32k_checkpoint03000000.pt,2162.316,622.1027954799753,735.0,3522.0
+data/32K_TUF/b=>a rb/b=>a_5m_32k_checkpoint03500000.pt,2905.968,734.1262091602506,850.0,5819.0
+data/32K_TUF/b=>a rb/b=>a_5m_32k_checkpoint04000000.pt,2875.87,836.2626531778159,787.0,6571.0
+data/32K_TUF/b=>a rb/b=>a_5m_32k_checkpoint04500000.pt,2408.326,834.3004924629975,651.0,5734.0
+data/32K_TUF/b=>a rb/b=>a_5m_32k_checkpoint05000000.pt,3104.678,963.9847936124304,849.0,7363.0

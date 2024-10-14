@@ -1,4 +1,0 @@
-checkpoint_file,mean_reward,std_reward,min_reward,max_reward
-../best_training_32K/a=>b rb/breakout_rainbow_checkpoint00500000.pt,13.9,4.772630302045194,5.0,35.0
-../best_training_32K/a=>b rb/breakout_rainbow_checkpoint01000000.pt,30.696,10.645730787503506,6.0,66.0
-../best_training_32K/a=>b rb/breakout_rainbow_checkpoint01500000.pt,38.922,11.397715385111177,13.0,79.0

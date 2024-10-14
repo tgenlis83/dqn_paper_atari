@@ -32,6 +32,23 @@ def initialize_dqn(config, n_actions, device, model_type):
     else:
         dqn = DeepQNetwork(n_actions).to(device)
         target_dqn = DeepQNetwork(n_actions).to(device)
+    
+    if "pretrained_weights" in config:
+        print(f"Loading pretrained weights from {config['pretrained_weights']}")
+        # Load the checkpoint
+        state_dict = torch.load(
+            config["pretrained_weights"],
+            map_location=device,
+            weights_only=True
+        )
+
+        # Load the state dict, ignoring the last layer
+        if model_type == "rainbow":
+            filtered_state_dict = {k: v for k, v in state_dict.items() if 'value_stream.2' not in k and 'advantage_stream.2' not in k}
+        elif model_type == "double":
+            filtered_state_dict = {k: v for k, v in state_dict.items() if 'linear.2' not in k}
+        dqn.load_state_dict(filtered_state_dict, strict=False)
+    
     target_dqn.load_state_dict(dqn.state_dict())
     optimizer = torch.optim.Adam(dqn.parameters(), lr=config["learning_rate"])
     return dqn, target_dqn, optimizer
@@ -106,6 +123,7 @@ def train(config, device, model_type):
                     ).unsqueeze(0)
                     q_values = dqn(obs_tensor)
                     action = torch.argmax(q_values, dim=1).item()
+        training_log.episode_q_values += q_values.mean().item()
 
         if override_action:
             action = 1
